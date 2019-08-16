@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Knowledge Explorer</title>
+    <link rel="stylesheet" href="library/bootstrap-4.2.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-customize.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+    <div id="app"
+        ref="app">
+        <header class="app-header fixed-top">
+            <nav class="navbar navbar-expand-lg">
+                <div class="navbar-brand">
+                    <a href="#">Knowledge Explorer</a>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav" role="menu" aria-label="menu">
+                        <li class="nav-item" role="menuitem" aria-label="menuitem" v-if="isView">
+                            <a href="#" class="nav-link">
+                                <button class="btn btn-primary" @click.stop="editMode">Edit Mode</button>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="menuitem" aria-label="menuitem" v-else>
+                            <a href="#" class="nav-link">
+                                <button class="btn btn-primary" @click.stop="viewMode">View Mode</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <view-mode
+                :elements="elements"
+                :links="links"
+                v-if="isView">
+        </view-mode>
+        <edit-mode
+                :elements="elements"
+                :links="links"
+                :element="selectedElement"
+                :link="selectedLink"
+                v-else>
+        </edit-mode>
+    </div>
+
+    <script src="library/vue-2.5.22/dist/vue.min.js"></script>
+    <script src="library/ckeditor/ckeditor.js"></script>
+    <script src="js/helper/draggable.js"></script>
+    <script src="js/helper/uuid.js"></script>
+    <script src="js/components/edit-mode.js"></script>
+    <script src="js/components/view-mode.js"></script>
+    <script src="js/components/element-wrapper.js"></script>
+    <script src="js/components/link-wrapper.js"></script>
+    <script src="js/components/editor.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
